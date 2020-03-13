@@ -1,4 +1,6 @@
-import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
+import {PostEntity} from "../post/post.entity";
+import {GenericEntity} from "../generic/generic.entity";
 
 enum Roles {
     USER = 'User',
@@ -6,13 +8,18 @@ enum Roles {
 }
 
 @Entity({name: 'users'})
-export class UserEntity {
-    // Primary key
+export class UserEntity extends GenericEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({length: 50, unique: true})
+    @Column({length: 30})
     name: string;
+
+    @Column({length: 15, unique: true})
+    username: string;
+
+    @Column({length: 15})
+    password: string;
 
     @Column({type: 'text', nullable: true})
     about: string;
@@ -23,11 +30,6 @@ export class UserEntity {
     @Column({type: 'enum', enum: Roles, default: Roles.USER})
     role: Roles;
 
-    @Column({type: 'timestamp'})
-    last_online: string;
-
-    @Column({type: 'timestamp'})
-    creation_date: string;
-
-
+    @OneToMany(() => PostEntity, (post: PostEntity) => post.user)
+    posts: PostEntity[];
 }

@@ -14,31 +14,32 @@ export class UserController {
     }
 
     @Get(':id')
-    async findUser(@Param('id') userID: number) {
+    async findUser(@Param('id') userID: string) {
         return await this.userService.findUser(userID);
     }
 
     @Post()
-    async createUser(@Body('name') name: string,
+    async createUser(@Body('firstName') firstName: string,
+                     @Body('lastName') lastName: string,
                      @Body('about') about: string,
-                     @Body('user') username: string,
+                     @Body('username') username: string,
                      @Body('pass') password: string,
                      @Body('email') email: string): Promise<UserEntity> {
-        return await this.userService.addUser(name, about, username, password, email);
+        return await this.userService.addUser(firstName, lastName, about, username, password, email);
     }
 
     @Patch(':id')
-    async updateUser(@Param('id') id: number,
-                     @Body('name') name: string,
+    async updateUser(@Param('id') id: string,
+                     @Body('firstName') firstName: string,
+                     @Body('lastName') lastName: string,
                      @Body('about') about: string,
-                     @Body('user') username: string,
                      @Body('pass') password: string,
                      @Body('email') email: string): Promise<UserEntity> {
-        return await this.userService.updateExistingUser(id, name, about, username, password, email);
+        return await this.userService.updateExistingUser(id, firstName, lastName, about, password, email);
     }
 
     @Delete(':id')
-    async deleteUser(@Param('id') id: number): Promise<DeleteResult> {
+    async deleteUser(@Param('id') id: string): Promise<DeleteResult> {
         return await this.userService.removeUser(id);
     }
 }

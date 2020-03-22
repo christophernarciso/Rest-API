@@ -1,6 +1,8 @@
-import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
 import {PostEntity} from "../post/post.entity";
 import {GenericEntity} from "../generic/generic.entity";
+import {CommentEntity} from "../comment/comment.entity";
+import {Exclude} from 'class-transformer';
 
 enum Roles {
     USER = 'User',
@@ -12,14 +14,22 @@ export class UserEntity extends GenericEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({length: 30})
-    name: string;
+    @Column()
+    firstName: string;
+
+    @Column()
+    lastName: string;
 
     @Column({length: 15, unique: true})
     username: string;
 
-    @Column({length: 15})
+    @Exclude()
+    @Column({type: 'varchar', length: 500})
     password: string;
+
+    @Exclude()
+    @Column({type: 'varchar', length: 500})
+    salt: string;
 
     @Column({type: 'text', nullable: true})
     about: string;
@@ -32,4 +42,8 @@ export class UserEntity extends GenericEntity {
 
     @OneToMany(() => PostEntity, (post: PostEntity) => post.user)
     posts: PostEntity[];
+
+    @ManyToOne(() => CommentEntity, (comment: CommentEntity) => comment.post,
+        {onUpdate: 'CASCADE', onDelete: 'CASCADE'})
+    comments: CommentEntity[];
 }

@@ -23,7 +23,7 @@ export class UserController {
                      @Body('lastName') lastName: string,
                      @Body('about') about: string,
                      @Body('username') username: string,
-                     @Body('pass') password: string,
+                     @Body('password') password: string,
                      @Body('email') email: string): Promise<UserEntity> {
         return await this.userService.addUser(firstName, lastName, about, username, password, email);
     }
@@ -33,7 +33,7 @@ export class UserController {
                      @Body('firstName') firstName: string,
                      @Body('lastName') lastName: string,
                      @Body('about') about: string,
-                     @Body('pass') password: string,
+                     @Body('password') password: string,
                      @Body('email') email: string): Promise<UserEntity> {
         return await this.userService.updateExistingUser(id, firstName, lastName, about, password, email);
     }

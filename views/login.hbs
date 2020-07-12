@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>REST ENV - An open-source rest env</title>
+</head>
+<body class="bg-light">
+<div class="container" style="max-width:700px">
+    <div class="card shadow-sm" style="margin-top: 20px">
+        <div class="card-header">
+            <h6 style="margin-bottom: 0; margin-top: 7px; display: inline-block">
+                <a href="/" class="text-dark">{{brand}}
+                    <span class="site-title-second-half"> - {{title}}</span>
+                </a>
+            </h6>
+            <span style="float: right">
+                        <span class="csqa-nav">
+                            <a href="" class="text-dark">My Questions</a> |
+                            <a href="" class="text-dark">My Answers</a>
+                        </span>
+                    </span>
+        </div>
+        <div class="pb-2 pt-4 pr-4 pl-4">
+            <form>
+                <!--      MAKE PRETTIER FORM          -->
+                <input type="text" placeholder="Username" name="user">
+                <input type="text" placeholder="Password" name="pass">
+                <input type="text" placeholder="Email" name="email">
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container text-right" style="max-width:700px; padding-right:21px; padding-top:2px; font-size:14px; color: #6c757d">
+    <a href="/" class="text-secondary">Home</a> |
+    {{#if loggedIn}}
+        <a href="" class="text-secondary">Log out ({{loggedIn}})</a> |
+    {{/if}}
+    <a href="" class="text-secondary">Sign up / log in</a> |
+    <a href="https://github.com/ykdojo/csqa" class="text-secondary" target="_blank">Source code</a> |
+    <a href="" class="text-secondary">About</a>
+</div>
+</body>
+</html>

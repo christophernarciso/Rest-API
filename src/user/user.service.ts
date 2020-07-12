@@ -1,7 +1,7 @@
 import {InjectRepository} from "@nestjs/typeorm";
 import {UserEntity} from "./user.entity";
 import {DeleteResult, Repository} from "typeorm";
-import {Body, ConflictException, Injectable, NotFoundException} from "@nestjs/common";
+import {ConflictException, Injectable, NotFoundException} from "@nestjs/common";
 import {genSalt, hashSync} from "bcrypt";
 
 @Injectable()

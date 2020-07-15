@@ -1,9 +1,14 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--Fontawesome CDN-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/main.css">
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <title>REST ENV - An open-source rest env</title>
 </head>
 <body class="bg-light">
@@ -27,12 +32,14 @@
         </div>
     </div>
 </div>
-<div class="container text-right" style="max-width:700px; padding-right:21px; padding-top:2px; font-size:14px; color: #6c757d">
-    <a href="/" class="text-secondary">Home</a> |
+<div class="container text-right"
+     style="max-width:700px; padding-right:21px; padding-top:2px; font-size:14px; color: #6c757d">
+    <a href="/" class="text-active">Home</a> |
     {{#if loggedIn}}
-    <a href="" class="text-secondary">Log out ({{loggedIn}})</a> |
+        <a href="" class="text-secondary">Log out ({{loggedIn}})</a> |
+    {{else}}
+        <a href="/login" class="text-secondary">Sign up / log in</a> |
     {{/if}}
-    <a href="/login" class="text-secondary">Sign up / log in</a> |
     <a href="https://github.com/ykdojo/csqa" class="text-secondary" target="_blank">Source code</a> |
     <a href="" class="text-secondary">About</a>
 </div>

@@ -28,46 +28,52 @@
                     </span>
         </div>
         <div class="pb-2 pt-4 pr-4 pl-4">
-            <!--      LOGIN FORM          -->
+            <!--      SIGNUP FORM          -->
             <div class="d-flex justify-content-center h-100">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="text-active">Sign In</h3>
-                        <div class="d-flex justify-content-end social_icon">
-<!--                            <span><i class="fab fa-facebook-square"></i></span>-->
-<!--                            <span><i class="fab fa-google-plus-square"></i></span>-->
-<!--                            <span><i class="fab fa-twitter-square"></i></span>-->
-                        </div>
+                        <h3 class="text-active">Sign Up</h3>
                     </div>
                     <div class="card-body">
-                        <form id="login-form" action="/auth/login" method="post" target="_self">
+                        <form id="login-form" action="/user/signup" method="post" target="_self">
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-envelope-open"></i></span>
+                                </div>
+                                <input type="text" required name="email" class="form-control" placeholder="Email">
+                            </div>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                                </div>
+                                <input type="text" required name="firstName" class="form-control" placeholder="First Name">
+                            </div>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                                </div>
+                                <input type="text" required name="lastName" class="form-control" placeholder="Last Name">
+                            </div>
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input type="text" name="username" required class="form-control" placeholder="Username">
-
+                                <input type="text" required name="username" class="form-control" placeholder="Username">
                             </div>
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
                                 </div>
-                                <input type="password" name="password" required class="form-control" placeholder="Password">
+                                <input type="password" required name="password" class="form-control" placeholder="Password">
                             </div>
-<!--                            <div class="row align-items-center remember text-active">-->
-<!--                                <input type="checkbox">Remember Me-->
-<!--                            </div>-->
                             <div class="form-group">
-                                <input type="submit" value="Login" class="btn float-right login_btn">
+                                <input type="submit" value="Create Account" class="btn float-right login_btn">
                             </div>
                         </form>
                     </div>
                     <div class="card-footer">
                         <div class="d-flex justify-content-center text-active">
-                            Don't have an account?<a href="/signup" class="small text-dark" style="padding-left: 10px; padding-top: 2px;">Sign Up</a>
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <a href="/forgot" class="small text-dark">Forgot your password?</a>
+                            <a href="/" class="small text-dark" style="padding-left: 10px; padding-top: 2px;">Terms & Conditions</a>
                         </div>
                     </div>
                 </div>
@@ -78,6 +84,9 @@
 <div class="container text-right"
      style="max-width:700px; padding-right:21px; padding-top:2px; font-size:14px; color: #6c757d">
     <a href="/" class="text-secondary">Home</a> |
+    {{#if loggedIn}}
+        <a href="" class="text-secondary">Log out ({{loggedIn}})</a> |
+    {{/if}}
     <a class="text-active">Sign up / log in</a> |
     <a href="https://github.com/ykdojo/csqa" class="text-secondary" target="_blank">Source code</a> |
     <a href="" class="text-secondary">About</a>

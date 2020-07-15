@@ -11,6 +11,12 @@ enum Roles {
 
 @Entity({name: 'users'})
 export class UserEntity extends GenericEntity {
+
+    constructor(partial: Partial<UserEntity>) {
+        super();
+        Object.assign(this, partial);
+    }
+
     @PrimaryGeneratedColumn()
     id: number;
 

@@ -18,7 +18,7 @@ export class UserController {
         return await this.userService.findUser(userID);
     }
 
-    @Post()
+    @Post('signup')
     async createUser(@Body('firstName') firstName: string,
                      @Body('lastName') lastName: string,
                      @Body('about') about: string,

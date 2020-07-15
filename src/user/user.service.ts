@@ -2,7 +2,7 @@ import {InjectRepository} from "@nestjs/typeorm";
 import {UserEntity} from "./user.entity";
 import {DeleteResult, Repository} from "typeorm";
 import {ConflictException, Injectable, NotFoundException} from "@nestjs/common";
-import {genSalt, hashSync} from "bcrypt";
+import {compare, genSalt, hashSync} from "bcrypt";
 
 @Injectable()
 export class UserService {
@@ -29,7 +29,14 @@ export class UserService {
             salt: salt,
         });
         try {
-            return await this.userEntityRepository.save(userEntity);
+            const save = await this.userEntityRepository.save(userEntity);
+            return new UserEntity(
+                {
+                    id: save.id,
+                    username: save.username,
+                    email: save.email
+                }
+            );
         } catch (e) {
             throw new ConflictException(e.toString());
         }
@@ -55,7 +62,17 @@ export class UserService {
         }
         if (email)
             update.email = email;
-        return await this.userEntityRepository.save(update);
+        const save = await this.userEntityRepository.save(update);
+        return new UserEntity(
+            {
+                id: save.id,
+                username: save.username,
+                email: save.email,
+                firstName: save.firstName,
+                lastName: save.lastName,
+                about: save.about
+            }
+        );
     }
 
     private async verifyUserEntity(user: string): Promise<UserEntity> {
@@ -70,4 +87,9 @@ export class UserService {
         const genHashValue = await hashSync(password, genSaltValue);
         return {hash: genHashValue, salt: genSaltValue};
     }
+
+    public async isValidUserData(userHash: string, userPassword: string): Promise<boolean> {
+        return await compare(userPassword, userHash);
+    }
+
 }
